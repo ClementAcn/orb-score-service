@@ -6,7 +6,7 @@ Ces trois services sont :
 * Gestion des notes
 * UI
 
-##Présentation de ce service
+## Présentation de ce service
 Ce service permet la gestion des avis sur un lieu. Que ce soit l'ajout, la suppression, la mise à jour ou la visualisation d'un ou des avis.
 
 
