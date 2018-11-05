@@ -15,21 +15,26 @@ import java.util.List;
 
 @Api(description = "API pour les opérations CRUD sur les notes")
 @RestController
-@RequestMapping(value = "/score")
+@RequestMapping(value = "/")
 public class ScoreController {
 
     @Autowired
     private ScoreDao scoreDao;
 
-    @ApiOperation(value = "Récupère la liste de toutes les notes")
     @GetMapping(value = "/")
+    public String accueilAPI(){
+        return "Service REST de gestion des scores de l'application ORB";
+    }
+
+    @ApiOperation(value = "Récupère la liste de toutes les notes")
+    @GetMapping(value = "/score")
     public List<Score> getAll(){
         System.out.println("here");
         return scoreDao.findAll();
     }
 
     @ApiOperation(value = "Récupère une note en fonction de son ID")
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/score/{id}")
     public Score getById(@PathVariable int id) throws ScoreNotFoundException {
         Score score = scoreDao.findById(id);
         if (score == null)
@@ -38,13 +43,13 @@ public class ScoreController {
     }
 
     @ApiOperation(value = "Récupère la liste de toutes les notes d'un utilisateur")
-    @GetMapping(value = "/findByUserId/{id}")
+    @GetMapping(value = "/score/findByUserId/{id}")
     List<Score> getByUserId(@PathVariable int id){
         return scoreDao.findByUserId(id);
     }
 
     @ApiOperation(value = "Récupère la liste de toutes les notes d'un lieu")
-    @GetMapping(value = "/findByPlaceId/{id}")
+    @GetMapping(value = "/score/findByPlaceId/{id}")
     List<Score> getByPlaceId(@PathVariable int id){
         return scoreDao.findByPlaceId(id);
     }

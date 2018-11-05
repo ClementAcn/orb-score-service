@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface ScoreDao extends JpaRepository<Score, Integer> {
+
     List<Score> findAll();
+
     Score findById(int id);
 
     @Query("SELECT s from Score s where s.id_user = :id")
@@ -18,7 +20,10 @@ public interface ScoreDao extends JpaRepository<Score, Integer> {
 
     @Query("SELECT s from Score s where s.id_place = :id")
     List<Score> findByPlaceId(@Param("id") int id);
+
     //public List<Score> findNLastById_user(int n, int id);
+
     //public List<Score> findNLastById_place(int n, int id);
+
     //public Score save(Score score);
 }
