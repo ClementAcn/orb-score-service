@@ -1,7 +1,11 @@
 package com.orb.scoreservice.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -9,13 +13,21 @@ import java.util.Date;
 public class Score {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int id_user;
+
     private int id_place;
+
     private int score;
+
     private String comment;
-    private Date creation_date;
+
+    @CreationTimestamp
+    private Date creation_date; // Date quand la note a été créée
+
+    @UpdateTimestamp
     private Date update_date; // Stockera la date de la dernière maj de la note
 
     public Score(int id, int id_user, int id_place, int score, String comment, Date creation_date, Date update_date) {

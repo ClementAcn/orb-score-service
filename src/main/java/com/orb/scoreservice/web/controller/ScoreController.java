@@ -6,10 +6,7 @@ import com.orb.scoreservice.web.exceptions.ScoreNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class ScoreController {
 
     @ApiOperation(value = "Récupère une note en fonction de son ID")
     @GetMapping(value = "/score/{id}")
-    public Score getById(@PathVariable int id) throws ScoreNotFoundException {
+    public Score getById(@PathVariable("id") int id) throws ScoreNotFoundException {
         Score score = scoreDao.findById(id);
         if (score == null)
             throw new ScoreNotFoundException("La note avec l'id " + id + " n'existe pas");
@@ -44,14 +41,41 @@ public class ScoreController {
 
     @ApiOperation(value = "Récupère la liste de toutes les notes d'un utilisateur")
     @GetMapping(value = "/score/findByUserId/{id}")
-    List<Score> getByUserId(@PathVariable int id){
+    List<Score> getByUserId(@PathVariable("id") int id){
         return scoreDao.findByUserId(id);
     }
 
     @ApiOperation(value = "Récupère la liste de toutes les notes d'un lieu")
     @GetMapping(value = "/score/findByPlaceId/{id}")
-    List<Score> getByPlaceId(@PathVariable int id){
+    List<Score> getByPlaceId(@PathVariable("id") int id){
         return scoreDao.findByPlaceId(id);
+    }
+
+    @ApiOperation(value = "Récupère la liste des N dernières notes d'un utilisateur")
+    @GetMapping(value = "/score/findNLastUser")
+    List<Score> getNLastByIdUser(@RequestParam("n") int n, @RequestParam("id") int id){
+        return scoreDao.findNLastById_user(n, id);
+    }
+
+    @ApiOperation(value = "Récupère la liste des N dernières notes d'une place")
+    @GetMapping(value = "/score/findNLastPlace")
+    List<Score> getNLastByIdPlace(@RequestParam("n") int n, @RequestParam("id") int id){
+        return scoreDao.findNLastById_place(n, id);
+    }
+
+    @PostMapping(value = "/score/create")
+    Score create(@RequestBody Score score){
+        return scoreDao.save(score);
+    }
+
+    @PutMapping(value = "/score/update")
+    Score update(@RequestBody Score score){
+        return scoreDao.save(score);
+    }
+
+    @DeleteMapping(value = "/score/delete")
+    void delete(@RequestBody Score score){
+        scoreDao.delete(score);
     }
 
 }

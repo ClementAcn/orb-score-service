@@ -16,14 +16,18 @@ public interface ScoreDao extends JpaRepository<Score, Integer> {
     Score findById(int id);
 
     @Query("SELECT s from Score s where s.id_user = :id")
-    List<Score> findByUserId(@Param("id") int id);
+    List<Score> findByUserId(@Param("id")int id);
 
     @Query("SELECT s from Score s where s.id_place = :id")
-    List<Score> findByPlaceId(@Param("id") int id);
+    List<Score> findByPlaceId(@Param("id")int id);
 
-    //public List<Score> findNLastById_user(int n, int id);
+    @Query(value = "SELECT * from Score s where s.id_user = :id order by s.creation_date limit :n", nativeQuery = true)
+    List<Score> findNLastById_user(@Param("n")int n, @Param("id")int id);
 
-    //public List<Score> findNLastById_place(int n, int id);
+    @Query(value = "SELECT * from Score s where s.id_place = :id order by s.creation_date limit :n", nativeQuery = true)
+    List<Score> findNLastById_place(@Param("n")int n, @Param("id")int id);
 
-    //public Score save(Score score);
+    Score save(Score score);
+
+    void delete(Score score);
 }
