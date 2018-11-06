@@ -6,8 +6,11 @@ import com.orb.scoreservice.web.exceptions.ScoreNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Api(description = "API pour les opérations CRUD sur les notes")
@@ -63,16 +66,19 @@ public class ScoreController {
         return scoreDao.findNLastById_place(n, id);
     }
 
+    @ApiOperation(value = "Création d'une note")
     @PostMapping(value = "/score/create")
     Score create(@RequestBody Score score){
         return scoreDao.save(score);
     }
 
+    @ApiOperation(value = "Mise à jour d'une note")
     @PutMapping(value = "/score/update")
     Score update(@RequestBody Score score){
         return scoreDao.save(score);
     }
 
+    @ApiOperation(value = "Suppression d'une note")
     @DeleteMapping(value = "/score/delete")
     void delete(@RequestBody Score score){
         scoreDao.delete(score);

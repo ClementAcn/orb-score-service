@@ -3,10 +3,10 @@ package com.orb.scoreservice.model;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -20,17 +20,20 @@ public class Score {
 
     private int id_place;
 
+    @Min(value = 0)
+    @Max(value = 5)
     private int score;
 
     private String comment;
 
     @CreationTimestamp
-    private Date creation_date; // Date quand la note a été créée
+    @Column(updatable = false)
+    private Timestamp creation_date; // Date quand la note a ete creee
 
     @UpdateTimestamp
-    private Date update_date; // Stockera la date de la dernière maj de la note
+    private Timestamp update_date; // Stockera la date de la derniere maj de la note
 
-    public Score(int id, int id_user, int id_place, int score, String comment, Date creation_date, Date update_date) {
+    public Score(int id, int id_user, int id_place, int score, String comment, Timestamp creation_date, Timestamp update_date) {
         this.id = id;
         this.id_user = id_user;
         this.id_place = id_place;
@@ -82,19 +85,19 @@ public class Score {
         this.comment = comment;
     }
 
-    public Date getCreation_date() {
+    public Timestamp getCreation_date() {
         return creation_date;
     }
 
-    public void setCreation_date(Date creation_date) {
+    public void setCreation_date(Timestamp creation_date) {
         this.creation_date = creation_date;
     }
 
-    public Date getUpdate_date() {
+    public Timestamp getUpdate_date() {
         return update_date;
     }
 
-    public void setUpdate_date(Date update_date) {
+    public void setUpdate_date(Timestamp update_date) {
         this.update_date = update_date;
     }
 
