@@ -6,6 +6,11 @@ Ces trois services sont :
 * Gestion des notes
 * UI
 
+## Pré-requis
+* [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* [Maven 4](https://maven.apache.org/)
+
+
 ## Présentation de ce service
 Ce service permet la gestion des avis sur un lieu. Que ce soit l'ajout, la suppression, la mise à jour ou la visualisation d'un ou des avis.
 
