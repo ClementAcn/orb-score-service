@@ -63,6 +63,12 @@ public class ScoreController {
         return _scoreDao.findNLastById_place(n, id);
     }
 
+    @ApiOperation(value = "Récupère les N dernières notes")
+    @GetMapping(value = "/findNLast")
+    List<Score> getNLast(@RequestParam("n") int n){
+        return _scoreDao.findNLast(n);
+    }
+
     @ApiOperation(value = "Création d'une note")
     @PostMapping(value = "/")
     ResponseEntity<Score> create(@RequestBody Score score){
