@@ -30,9 +30,6 @@ public class ScoreController {
     @ApiOperation(value  = "Récupère une note en fonction de son ID")
     @GetMapping(value = "/{id}")
     public Score getById(@PathVariable("id") int id) throws ScoreNotFoundException {
-        String location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .toUriString();
         Score score = _scoreDao.findById(id);
         if (score == null)
             throw new ScoreNotFoundException("La note avec l'id " + id + " n'existe pas");
