@@ -6,13 +6,23 @@ Ces trois services sont :
 * Gestion des notes
 * UI
 
+## Présentation de ce service
+Ce service permet la gestion des avis sur un lieu. Que ce soit l'ajout, la suppression, la mise à jour ou la visualisation d'un ou des avis.
+
+
 ## Pré-requis
 * [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 4](https://maven.apache.org/)
 
+## Compilation de l'application
+``
+mvn clean install
+``
 
-## Présentation de ce service
-Ce service permet la gestion des avis sur un lieu. Que ce soit l'ajout, la suppression, la mise à jour ou la visualisation d'un ou des avis.
+## Lancement de l'application
+``
+java -jar target/score-service-0.0.1-SNAPSHOT.jar
+``
 
 
 ## Contributeurs
