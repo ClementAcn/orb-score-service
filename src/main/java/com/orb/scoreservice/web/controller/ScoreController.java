@@ -6,6 +6,7 @@ import com.orb.scoreservice.web.exceptions.ScoreNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,17 +24,20 @@ public class ScoreController {
 
     @ApiOperation(value = "Récupère la liste de toutes les notes")
     @GetMapping(value = "/")
-    public List<Score> getAll(){
-        return _scoreDao.findAll();
+    public ResponseEntity<List<Score>> getAll(){
+        List<Score> scores = _scoreDao.findAll();
+        if(scores.isEmpty())
+            return new ResponseEntity<List<Score>>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<List<Score>>(scores, HttpStatus.OK);
     }
 
     @ApiOperation(value  = "Récupère une note en fonction de son ID")
     @GetMapping(value = "/{id}")
-    public Score getById(@PathVariable("id") int id) throws ScoreNotFoundException {
+    public ResponseEntity<Score> getById(@PathVariable("id") int id) throws ScoreNotFoundException {
         Score score = _scoreDao.findById(id);
         if (score == null)
             throw new ScoreNotFoundException("La note avec l'id " + id + " n'existe pas");
-        return _scoreDao.findById(id);
+        return new ResponseEntity<Score>(score, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Récupère la liste de toutes les notes d'un utilisateur")
