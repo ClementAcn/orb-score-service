@@ -13,6 +13,15 @@ Ce service permet la gestion des avis sur un lieu. Que ce soit l'ajout, la suppr
 ## Pré-requis
 * [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [Maven 4](https://maven.apache.org/)
+* MySQL
+
+### Pré-réquis installation en local
+On va créer une base qui s'appelle orb-score.
+Dans cette base il faudra importer le fichier score.sql présent dans le repo.
+Par défaut le port d'écoute de la base de données est 3306.
+Le chemin de la base de données est modifiable via le fichier application.properties
+
+
 
 ## Compilation de l'application
 ``
