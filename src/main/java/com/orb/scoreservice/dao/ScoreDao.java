@@ -25,7 +25,7 @@ public interface ScoreDao extends JpaRepository<Score, Integer> {
     List<Score> findNLastById_user(@Param("n")int n, @Param("id")int id);
 
     @Query(value = "SELECT * from Score s where s.id_place = :id order by s.creation_date DESC limit :n", nativeQuery = true)
-    List<Score> findNLastById_place(@Param("n")int n, @Param("id")int id);
+    List<Score> findNLastById_place(@Param("n")int n, @Param("id")String id);
 
     @Query(value = "SELECT * from Score s order by s.creation_date DESC limit :n", nativeQuery = true)
     List<Score> findNLast(@Param("n") int n);

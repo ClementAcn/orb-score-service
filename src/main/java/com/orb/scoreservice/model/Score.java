@@ -18,7 +18,7 @@ public class Score {
 
     private int id_user;
 
-    private int id_place;
+    private String id_place;
 
     @Min(value = 0)
     @Max(value = 5)
@@ -33,7 +33,7 @@ public class Score {
     @UpdateTimestamp
     private Timestamp update_date; // Stockera la date de la derniere maj de la note
 
-    public Score(int id, int id_user, int id_place, int score, String comment, Timestamp creation_date, Timestamp update_date) {
+    public Score(int id, int id_user, String id_place, int score, String comment, Timestamp creation_date, Timestamp update_date) {
         this.id = id;
         this.id_user = id_user;
         this.id_place = id_place;
@@ -61,11 +61,11 @@ public class Score {
         this.id_user = id_user;
     }
 
-    public int getId_place() {
+    public String getId_place() {
         return id_place;
     }
 
-    public void setId_place(int id_place) {
+    public void setId_place(String id_place) {
         this.id_place = id_place;
     }
 

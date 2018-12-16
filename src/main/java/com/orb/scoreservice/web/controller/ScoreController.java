@@ -60,7 +60,7 @@ public class ScoreController {
 
     @ApiOperation(value = "Récupère la liste des N dernières notes d'une place")
     @GetMapping(value = "/findNLastPlace")
-    List<Score> getNLastByIdPlace(@RequestParam("n") int n, @RequestParam("id") int id){
+    List<Score> getNLastByIdPlace(@RequestParam("n") int n, @RequestParam("id") String id){
         return _scoreDao.findNLastById_place(n, id);
     }
 
