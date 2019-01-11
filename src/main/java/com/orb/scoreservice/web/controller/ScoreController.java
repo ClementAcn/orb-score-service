@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @Api(description = "API pour les opérations CRUD sur les notes")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/score")
 public class ScoreController {
